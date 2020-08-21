@@ -1,0 +1,39 @@
+@font-face {
+    font-family: Oswald;
+    src: url("/static/fonts/Oswald-VariableFont_wght.ttf")
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Oswald', sans-serif;
+}
+
+
+
+a {
+    text-decoration: none;
+    
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 100%;
+
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+}
+
+.container * {
+    justify-self: center;
+}
+
+
+

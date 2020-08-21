@@ -1,0 +1,39 @@
+<!-- include navbar specific css -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+
+<div class="header-wrapper">
+    <header class="header">
+        <div class="header-title">
+            <div class="header-image">
+                <!-- <img src="/static/images/img.png" alt=""> -->
+            </div>        
+            <h1><a href="/"> <span class="hl-color">E</span>than <span class="hl-color" >K</span>uhrts</a></h1>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/portfolio">Portfolio</a></li>
+                <li><a href="/contact">Contact</a></li>
+                
+            </ul>
+        </nav>
+        
+    </header>
+    
+</div>
+
+<script>
+    // Detects if the link is for the current page and changes the style to indicate the page is active
+    var nav_custom = document.getElementsByClassName("nav")[0];
+    nav_custom = nav_custom.childNodes[1]
+    for(var i = 0; i < nav_custom.childNodes.length; i++) {
+        nav_node = nav_custom.childNodes[i];
+        if (nav_node.nodeType == Node.ELEMENT_NODE) {
+            if (nav_node.childNodes[0].href == document.URL) {
+                nav_node.classList += "active-target-page";
+                nav_node.style['background-color'] = 'rgb(223, 168, 255)'
+                nav_node.style['border-radius'] = '3px'
+            }
+        }
+    }
+</script>

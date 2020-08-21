@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @font-face {
+            font-family: Oswald;
+            src: url("./static/fonts/Oswald-VariableFont_wght.ttf")
+        }
+    
+        * {
+            padding: 0px;
+            margin: 0px;
+            font-family: 'Oswald', sans-serif;
+        }
+    
+        body {
+            background-color: black;
+            color: white;
+        }
+    
+    
+    
+        a {
+            text-decoration: none;
+    
+        }
+    
+        .container {
+            display: grid;
+            grid-template-columns: 100%;
+    
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+    
+        }
+    
+        .container * {
+            justify-self: center;
+        }
+    </style>
+    
+    <style>
+        .header {
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-template-rows: 65px auto;
+            align-items: center;
+            position: relative;
+        }
+    
+        .header::after {
+            content: '';
+            z-index: -10;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background-color: #363636;
+        }
+    
+        .header a {
+            color: white;
+        }
+    
+        .header-title {
+            float: left;
+            grid-column: 1;
+        }
+    
+        .header-title h1 {
+            margin-left: 3%;
+            font-weight: 350;
+            letter-spacing: 1px;
+    
+        }
+    
+        span[class='hl-color']:first-child {
+            color: rgb(223, 168, 255);
+            font-weight: 500;
+            font-size: 1.3em;
+    
+        }
+    
+        span[class='hl-color'] {
+            color: rgb(223, 168, 255);
+            font-weight: 500;
+        }
+    
+    
+        /* Screen larger then 600px (width) */
+        @media (min-width:450px) {
+            .nav {
+                float: right;
+                margin-right: 3%;
+                grid-row: 1;
+                grid-column: 2;
+    
+            }
+    
+            .nav ul {
+                display: flex;
+                float: right;
+    
+            }
+        }
+    
+        /* Screen smaller then 600px (width) */
+        @media (max-width: 450px) {
+            .nav {
+                float: left;
+                grid-row: 2;
+                grid-column: 1/2;
+            }
+    
+            .nav ul {
+                display: flex;
+                float: left;
+            }
+        }
+    
+        .nav li {
+            padding: 7px;
+            margin-right: 5px;
+            list-style: none;
+            position: relative;
+            overflow-y: hidden;
+    
+    
+        }
+    
+        .nav li a {
+            font-size: 1.1em;
+        }
+    
+        .nav li:last-child {
+            margin-right: 0;
+        }
+    
+        .nav li::after {
+            content: '';
+            z-index: -5;
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            background-color: rgb(223, 168, 255);
+            left: 0;
+            bottom: 0;
+            transform: translateY(5px);
+            transition: all .5s;
+        }
+    
+        .nav li:hover::after {
+            transform: translateY(0px)
+        }
+    </style>
+    
+    <style>
+        .parallax-container {
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 65px);
+            overflow: hidden;
+            background: black;
+        }
+    
+        .parallax-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(rgba(223, 168, 255, 0.25), rgba(51, 10, 56, .25))
+        }
+    
+        .main-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background: black;
+        }
+    
+        .parallax-container img {
+            opacity: 50%;
+        }
+    
+        .parallax-header {
+            position: relative;
+            top: 30vh;
+            margin: auto;
+            color: white;
+            font-size: 1.3em;
+            text-align: center;
+            text-shadow: 0px 0px 15px rgb(223, 168, 255);
+            filter: drop-shadow(0px 0px 30px rgb(223, 168, 255));
+            text-rendering: optimizeLegibility;
+            text-justify: newspaper
+        }
+    
+        #parallax-3 {
+            position: absolute;
+            width: 90%;
+            left: 5%;
+            filter: blur(.6px) drop-shadow(0px 0px 3px blue)
+        }
+    
+        #parallax-1 {
+            position: absolute;
+            width: 50%;
+            left: 25%;
+            filter: blur(2px) drop-shadow(0px 0px 3px green) brightness(50%);
+        }
+    
+        #parallax-2 {
+            position: absolute;
+            width: 90%;
+            left: 50%;
+            filter: blur(1px) drop-shadow(0px 0px 3px red) brightness(75%);
+        }
+    
+        #content-parallax-1 {
+            position: absolute;
+            top: 10px;
+            width: 90%;
+            left: 5%;
+            background: black;
+        }
+    
+        #background-particles {
+            position: absolute;
+            z-index: 0;
+        }
+    </style>
+    
+    
+    <style>
+        .footer {
+            display: grid;
+            height: 200px;
+            background: #363636;
+            position: relative;
+            align-items: center;
+            grid-template-columns: auto;
+            grid-template-rows: 50% 50%;
+        }
+    
+        .footer-links {
+            grid-row: 2;
+            float: right;
+            margin-right: 3%;
+    
+        }
+    
+        .footer-links ul {
+            display: flex;
+            float: right;
+        }
+    
+        .footer-links li {
+            padding: 5px;
+            list-style: none;
+            position: relative;
+            overflow: hidden;
+        }
+    
+        .footer-links a {
+            color: white;
+        }
+    
+        .footer-links a:hover {
+            color: #dadada;
+            filter: drop-shadow(0px 0px 5px, blue);
+        }
+    
+        .footer-links a img:hover {
+            color: #dadada;
+            filter: drop-shadow(0px 0px 3px white);
+        }
+    </style>
+
+
+    <title>Ethan Kuhrts</title>
+</head>
+
+<body>
+    <!-- include navbar specific css -->
+    
+    <div class="header-wrapper">
+        <header class="header">
+            <div class="header-title">
+                <div class="header-image">
+                    <!-- <img src="/static/images/img.png" alt=""> -->
+                </div>
+                <h1><a href="/"> <span class="hl-color">E</span>than <span class="hl-color">K</span>uhrts</a></h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/portfolio">Portfolio</a></li>
+                    <li><a href="/contact">Contact</a></li>
+    
+                </ul>
+            </nav>
+    
+        </header>
+    
+    </div>
+    
+    <script>
+        // Detects if the link is for the current page and changes the style to indicate the page is active
+        var nav_custom = document.getElementsByClassName("nav")[0];
+        nav_custom = nav_custom.childNodes[1]
+        for (var i = 0; i < nav_custom.childNodes.length; i++) {
+            nav_node = nav_custom.childNodes[i];
+            if (nav_node.nodeType == Node.ELEMENT_NODE) {
+                if (nav_node.childNodes[0].href == document.URL) {
+                    nav_node.classList += "active-target-page";
+                    nav_node.style['background-color'] = 'rgb(223, 168, 255)'
+                    nav_node.style['border-radius'] = '3px'
+                }
+            }
+        }
+    </script>
+    <div class="parallax-container" id="parallax-container">
+        <canvas id="background-particles"></canvas>
+        <img src="./static/images/code-parallax/js-parallax.png" id="parallax-2">
+        <img src="./static/images/code-parallax/css-parallax.png" id="parallax-1">
+        <img src="./static/images/code-parallax/html-parallax.png" id="parallax-3">
+        <div class="parallax-header" id="parallax-header">
+            <h1>Ethan Kuhrts</h1>
+            <p>Full stack web developer</p>
+        </div>
+    </div>
+    
+    <div class="main-container">
+        <div id="content-parallax-1">
+            <p style="max-width: 50%">
+                <span style="font-size: 2em">H</span>ello im Ethan, a full stack web developer.
+                Ive been programming for 5 years and use languages such as python, php, javascript,
+                css, html and c# I am also profficient using SQL, JSON and other storage formats.
+            </p>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <div class="footer-links">
+            <ul>
+                <li><a href="">
+                        <img style="height: 40px; width: 40px" src="./static/images/icons/twitter-icon.png" alt="twitter">
+                    </a></li>
+                <li><a href="">
+                        <img style="height: 40px; width: 40px" src="./static/images/icons/instagram-icon.png"
+                            alt="instagram">
+                    </a></li>
+                <li><a href="twitter.com/ethankuhrts">
+                        <img style="height: 40px; width: 40px" src="./static/images/icons/facebook-icon.png" alt="facebook">
+                    </a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+
+        var canvas = document.getElementById('background-particles');
+        var ctx = canvas.getContext('2d');
+
+        window.addEventListener('resize', resizeCanvas, false);
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            /**
+                * Your drawings need to be inside this function otherwise they will be reset when 
+                * you resize the browser window and the canvas goes will be cleared.
+                */
+        }
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.color = 'white';
+                this.radius = Math.random() * 2;
+                this.x = Math.random() * canvas.clientWidth;
+                this.y = Math.random() * canvas.clientHeight;
+                this.direction = Math.random() * 360;
+                this.speed = 1;
+
+                var self = this;
+            }
+
+            particleUpdate(self) {
+                self.x += self.speed * Math.cos(self.direction * Math.PI / 180);
+                self.y += self.speed * Math.sin(self.direction * Math.PI / 180);
+                if ((self.x >= canvas.width || self.x <= 0) ||
+                    (self.y >= canvas.height || self.y <= 0)) {
+                    self.direction += 180;
+                }
+                self.draw();
+            }
+
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+                ctx.fill();
+            }
+        }
+
+        var particles = [];
+
+        for (var p = 0; p < 100; p++) {
+            particles.push(new Particle())
+        }
+
+        function update_particles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (var p = 0; p < particles.length; p++) {
+                var particle = particles[p];
+                particle.particleUpdate(particle);
+
+            }
+
+            window.requestAnimationFrame(update_particles)
+        }
+
+        update_particles()
+
+
+    </script>
+    
+    
+    <script>
+
+        class ParallaxItem {
+            constructor(element) {
+                this.element = element;
+                this.direction = 1; // down, -1 for up
+                this.speed = 1; // 3 pixels per 1 pixelscrolled
+                this.limitTop = -10000; // origin
+                this.limitBottom = 10000; // furthest point from origin
+                this.defaultTop = this.element.style.top;
+
+                var self = this
+
+                document.addEventListener('scroll', function (e) { self.updateParallax(e, self) });
+            }
+
+            updateParallax(e, self) {
+                var el = self.element;
+                var scrollY = window.scrollY;
+
+                var elTop = (scrollY * self.speed) * self.direction;
+
+                if (elTop > self.limitTop && elTop < self.limitBottom) {
+                    el.style['margin-top'] = (elTop) + 'px';
+                }
+
+            }
+
+        }
+
+        parallax1 = new ParallaxItem(document.getElementById('parallax-1'))
+        parallax1.speed = 1.25;
+
+        parallax2 = new ParallaxItem(document.getElementById('parallax-2'))
+        parallax2.speed = 1.5;
+
+        parallax3 = new ParallaxItem(document.getElementById('parallax-3'))
+        parallax3.speed = 1.7;
+
+
+
+    </script>
+
+
+</body>
+
+</html>
+
+
+
